@@ -30,5 +30,6 @@ private:
     QTimer *timer; //- указатель таймера
     double elapsedTime; //- время в десятых долях
     int circleCount; //- круги
+    double lastLapTime;//- Время последнего круга
 };
 #endif // MAINWINDOW_H

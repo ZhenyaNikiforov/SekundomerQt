@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow), elapsedTime(0.00), circleCount(0)
+    , ui(new Ui::MainWindow), elapsedTime(0.00), circleCount(0), lastLapTime(0.0)
 {
     ui->setupUi(this);
 
@@ -25,14 +25,20 @@ MainWindow::~MainWindow()
 void MainWindow::on_circle_clicked(){
     if(this->elapsedTime > 0){
         this->circleCount++;
-        QString currentCircle = "Circle: " + QString::number(this->circleCount) + ", time: " + ui->demo_time->text();
+        double currentCircleTime = (this->elapsedTime * 0.1) - this->lastLapTime;
+
+        QString currentCircle = "Circle: " + QString::number(this->circleCount) + ", time: " + QString::number(currentCircleTime);
         ui->textBrowser->append(currentCircle);
+
+        this->lastLapTime = (this->elapsedTime * 0.1);
     }
 };
 
 void::MainWindow::on_cleaner_clicked(){
     this->elapsedTime = 0;
     ui->demo_time->setText("0.00");
+
+    this->lastLapTime = 0.0;
 
     this->circleCount = 0;
     ui->textBrowser->clear();
