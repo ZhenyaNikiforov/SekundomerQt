@@ -36,11 +36,6 @@ void::MainWindow::on_cleaner_clicked(){
 
     this->circleCount = 0;
     ui->textBrowser->clear();
-
-    if(this->timer->isActive()){
-        this->timer->stop();
-        ui->start_stop->setText("START");
-    }
 }
 
 void::MainWindow::on_start_stop_clicked(){
